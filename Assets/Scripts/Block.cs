@@ -5,6 +5,7 @@ using UnityEngine;
 public class Block : MonoBehaviour {
 
     [SerializeField] Sprite[] sprites;
+    [SerializeField] Score scoreStart;
 
      SpriteRenderer spriteR;
      int spriteVersion = 0;
@@ -13,6 +14,7 @@ public class Block : MonoBehaviour {
 
     
 	void Start () {
+        score = scoreStart;
         spriteR = gameObject.GetComponent<SpriteRenderer>();  
 	}
 	
@@ -49,7 +51,7 @@ public class Block : MonoBehaviour {
 
     }
 
-    private void CallScore()
+     void CallScore()
     {
         score.AddScore();
     }
