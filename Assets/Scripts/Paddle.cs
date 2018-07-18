@@ -20,6 +20,6 @@ public class Paddle : MonoBehaviour {
         paddlePos.x = Mathf.Clamp(mousePosInUnits, minX, maxX);
 
         transform.position = paddlePos;
-        Debug.Log(mousePosInUnits);
+  //      Debug.Log(mousePosInUnits);
     }
 }
