@@ -1,17 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class Block : MonoBehaviour {
 
     [SerializeField] Sprite[] sprites;
-    [SerializeField] TextMeshProUGUI score;
-    [SerializeField] int scoreDef;
 
-    private SpriteRenderer spriteR;
-    private int spriteVersion = 0;
-    private int scoreAmount;
+     SpriteRenderer spriteR;
+     int spriteVersion = 0;
+
+    Score score;
+
     
 	void Start () {
         spriteR = gameObject.GetComponent<SpriteRenderer>();  
@@ -46,8 +45,13 @@ public class Block : MonoBehaviour {
     {
         spriteVersion++;
         Debug.Log("Ball hit block");
-        scoreAmount = scoreAmount + scoreDef;
-        AddScore();
+        CallScore();
+
+    }
+
+    private void CallScore()
+    {
+        score.AddScore();
     }
 
     void DestroyBox()
@@ -56,8 +60,5 @@ public class Block : MonoBehaviour {
         Debug.Log("Block Destroyed");
     }
 
-    void AddScore()
-    {
-        score.text = scoreAmount.ToString();
-    }
+
 }
