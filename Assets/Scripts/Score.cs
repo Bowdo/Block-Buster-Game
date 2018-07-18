@@ -8,20 +8,17 @@ public class Score : MonoBehaviour {
     [SerializeField] int scoreDef = 5;
     [SerializeField] TextMeshProUGUI score;
 
+    public static Score scoreManager;
     public int scoreAmount;
 
-    void Start ()  {
-		
-	}
-	
+   void Awake()
+    {
+        scoreManager = this;
+    }
+
 	void Update () {
 
         score.text = scoreAmount.ToString();
-    }
-
-    public int GetScoreAmount()
-    {
-        return scoreAmount;
     }
 
     public void AddScore()

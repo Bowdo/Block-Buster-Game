@@ -4,56 +4,33 @@ using UnityEngine;
 
 public class Block : MonoBehaviour {
 
-    [SerializeField] Sprite[] sprites;
-    [SerializeField] Score scoreStart;
-
+     [SerializeField] Sprite[] sprites;
      SpriteRenderer spriteR;
      int spriteVersion = 0;
 
-    Score score;
-
-    
-	void Start () {
-        score = scoreStart;
+	void Start ()
+    {
         spriteR = gameObject.GetComponent<SpriteRenderer>();  
 	}
 	
 	void Update ()
     {
-        SpriteHandler();
-    }
 
-    private void SpriteHandler()
-    {
-        if (spriteVersion == 0)
-        {
-            spriteR.sprite = sprites[spriteVersion];
-        }
-        if (spriteVersion == 1)
-        {
-            spriteR.sprite = sprites[spriteVersion];
-        }
-        if (spriteVersion == 2)
-        {
-            spriteR.sprite = sprites[spriteVersion];
-        }
-        if (spriteVersion == 3)
-        {
-            DestroyBox();
-        }
     }
 
     void OnCollisionExit2D(Collision2D coll)
     {
         spriteVersion++;
+
+        if (spriteVersion >= 3)
+        {
+            DestroyBox();
+        }
+
+        Score.scoreManager.AddScore();
+        spriteR.sprite = sprites[spriteVersion];
         Debug.Log("Ball hit block");
-        CallScore();
 
-    }
-
-     void CallScore()
-    {
-        score.AddScore();
     }
 
     void DestroyBox()
@@ -61,6 +38,5 @@ public class Block : MonoBehaviour {
         Destroy(gameObject);
         Debug.Log("Block Destroyed");
     }
-
 
 }
