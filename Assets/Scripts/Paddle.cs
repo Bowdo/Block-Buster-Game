@@ -5,17 +5,21 @@ using UnityEngine;
 public class Paddle : MonoBehaviour {
 
     [SerializeField] float screenWidth = 16f;
-    
+    [SerializeField] float minX = 1f;
+    [SerializeField] float maxX = 15f;
 
 	void Start () {
-		
+	
 	}
 	
 	void Update () {
-        float mouseX = Input.mousePosition.x / Screen.width * screenWidth;
 
-        Debug.Log(mouseX);   // return a % instead of a pixel value. 1.0 to the far right, 0.0 to the left then * 16 to get screen units
-        Vector2 paddlePos = new Vector2(mouseX, transform.position.y);
+        float mousePosInUnits = Input.mousePosition.x / Screen.width * screenWidth;
+
+        Vector2 paddlePos = new Vector2(mousePosInUnits, transform.position.y);
+        paddlePos.x = Mathf.Clamp(mousePosInUnits, minX, maxX);
+
         transform.position = paddlePos;
+        Debug.Log(mousePosInUnits);
     }
 }
