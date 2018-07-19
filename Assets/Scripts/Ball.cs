@@ -6,8 +6,8 @@ using UnityEngine;
 public class Ball : MonoBehaviour {
 
     [SerializeField] Paddle paddle1;
-    [SerializeField] float xPush = 1f;
-    [SerializeField] float yPush = 15f;
+    [SerializeField] float xPush = 0.5f;
+    [SerializeField] float yPush = 18f;
     bool hasStarted = false;
 
     Vector2 paddleToBallVector;
