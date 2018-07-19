@@ -25,11 +25,14 @@ public class Block : MonoBehaviour {
         if (spriteVersion >= 3)
         {
             DestroyBox();
+            Score.scoreManager.AddScore();
         }
-
-        Score.scoreManager.AddScore();
-        spriteR.sprite = sprites[spriteVersion];
-        Debug.Log("Ball hit block");
+        else
+        {
+            Score.scoreManager.AddScore();
+            spriteR.sprite = sprites[spriteVersion];
+            Debug.Log("Ball hit block");
+        }
 
     }
 
