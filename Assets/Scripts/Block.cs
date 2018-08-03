@@ -5,8 +5,10 @@ using UnityEngine;
 public class Block : MonoBehaviour {
 
      [SerializeField] Sprite[] sprites;
-     SpriteRenderer spriteR;
-     int spriteVersion = 0;
+     [SerializeField] Rigidbody2D ballRigid;
+           float thrust = -18f;
+           SpriteRenderer spriteR;
+           int spriteVersion = 0;
 
 	void Start ()
     {
@@ -18,9 +20,12 @@ public class Block : MonoBehaviour {
 
     }
 
-    void OnCollisionExit2D(Collision2D coll)
+    void OnCollisionEnter2D(Collision2D coll)
     {
         spriteVersion++;
+        ballRigid.AddForce(transform.forward * thrust);
+      //  ballRigid.AddTorque(0.5f);
+        Debug.Log("Collision Detected");
 
         if (spriteVersion >= 3)
         {

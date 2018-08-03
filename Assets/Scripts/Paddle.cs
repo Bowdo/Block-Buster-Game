@@ -7,6 +7,7 @@ public class Paddle : MonoBehaviour {
     [SerializeField] float screenWidth = 16f;
     [SerializeField] float minX = 1f;
     [SerializeField] float maxX = 15f;
+    [SerializeField] Rigidbody2D ball;
 
 	void Start () {
 	
@@ -21,5 +22,9 @@ public class Paddle : MonoBehaviour {
 
         transform.position = paddlePos;
   //      Debug.Log(mousePosInUnits);
+    }
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        ball.AddForce(transform.forward * 18);
     }
 }
